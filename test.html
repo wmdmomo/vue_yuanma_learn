@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <!-- <div v-for="(item, index) in content.phone" :test="'phone' + index" :key="'phone' + index">
+                <button @click="test('phone', index)">测试</button>
+                <span v-if="content.phone[index].error">11111</span>
+                <span v-else>2222</span>
+            </div> -->
+        </div>
+        <div @click="test">ceshi</div>
+        <div>{{BBB}}</div>
+        <div>{{obj}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    BBB: 2,
+                    CCC: 4
+                }
+            },
+            computed: {
+                obj() {
+                    return this.BBB + this.CCC
+                }
+            },
+            methods: {
+                test(type, index) {
+                    // this.$set(this.content[type][index], 'error', 1)
+
+                    // this.content[type][index].error = 1
+                    this.BBB = this.BBB + 1
+                    // this.$forceUpdate();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

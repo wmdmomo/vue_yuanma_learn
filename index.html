@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <span>父组件的值：{{num}}</span>
+        <button-counter v-model="num"></button-counter>
+        <div @click="testFun">父组件</div> -->
+        {{testVal}}
+        <div @click="testFun">父组件</div>
+    </div>
+    <script>
+        Vue.component('button-counter', {
+            props: {
+                value: Boolean
+            },
+            computed: {
+                isShow: {
+                    get() {
+                        return this.value
+                    },
+                    set(val) {
+                        if (!val) {
+                            this.$emit('input', val);
+                        }
+
+                    }
+                }
+            },
+            methods: {
+                show() {
+                    this.isShow = false
+                    console.log(this.isShow)
+                }
+
+            },
+            template: '<button @click="show">You clicked me{{show}}times.</button>'
+        })
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    num: 23
+                    // obj: [{ name: null, type: null }]
+                }
+            },
+            computed: {
+                testVal() {
+                    return this.num
+                }
+            },
+            methods: {
+                testFun() {
+                    this.num = 678
+                    // var res = {
+                    //     name: 'wmd',
+                    //     type: 0
+                    // }
+                    // const { name, type } = res
+                    // this.$set(this.obj, 0, { name, type })
+                    // this.obj[0] = { name, type }
+                    // this.obj[0].name=name
+                    // this.obj[0].type=type
+                    // console.log(this.obj)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -20,7 +20,7 @@
         </div>
         <div @click="test">ceshi</div>
         <div>{{BBB}}</div>
-        <div>{{obj}}</div>
+        <div>{{CCC}}</div>
     </div>
     <script>
         var vm = new Vue({
@@ -28,12 +28,8 @@
             data() {
                 return {
                     BBB: 2,
-                    CCC: 4
-                }
-            },
-            computed: {
-                obj() {
-                    return this.BBB + this.CCC
+                    CCC: 4,
+                    OBJ: 999
                 }
             },
             methods: {
@@ -41,7 +37,9 @@
                     // this.$set(this.content[type][index], 'error', 1)
 
                     // this.content[type][index].error = 1
-                    this.BBB = this.BBB + 1
+                    for (let i = 0; i < 5; i++) {
+                        this.BBB = this.BBB + i
+                    }
                     // this.$forceUpdate();
                 }
             }

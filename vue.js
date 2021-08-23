@@ -1070,7 +1070,6 @@
           val = newVal;
         }
         childOb = !shallow && observe(newVal);
-        console.log('%%%%%%%%%%!!!',dep)
         dep.notify();
       }
     });
@@ -4399,6 +4398,7 @@
    */
   function queueWatcher (watcher) {
     var id = watcher.id;
+    // 他会去检测是否是相同的一个watcher 相同的话就不会进行
     if (has[id] == null) {
       has[id] = true;
       if (!flushing) {
@@ -4420,6 +4420,7 @@
           flushSchedulerQueue();
           return
         }
+        // flushSchedulerQueue()
         nextTick(flushSchedulerQueue);
       }
     }
@@ -6241,6 +6242,7 @@
         } else if (isUndef(oldEndVnode)) {
           oldEndVnode = oldCh[--oldEndIdx];
         } else if (sameVnode(oldStartVnode, newStartVnode)) {
+          console.log('头一样')
           patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
           oldStartVnode = oldCh[++oldStartIdx];
           newStartVnode = newCh[++newStartIdx];
@@ -6249,6 +6251,7 @@
           oldEndVnode = oldCh[--oldEndIdx];
           newEndVnode = newCh[--newEndIdx];
         } else if (sameVnode(oldStartVnode, newEndVnode)) { // Vnode moved right
+          console.log('头=尾')
           patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx);
           canMove && nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm));
           oldStartVnode = oldCh[++oldStartIdx];
@@ -6259,6 +6262,7 @@
           oldEndVnode = oldCh[--oldEndIdx];
           newStartVnode = newCh[++newStartIdx];
         } else {
+          console.log('tttttttttttggggggggggg')
           if (isUndef(oldKeyToIdx)) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx); }
           idxInOld = isDef(newStartVnode.key)
             ? oldKeyToIdx[newStartVnode.key]
